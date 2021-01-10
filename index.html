@@ -8,7 +8,7 @@
 		* {padding:0; margin:0;}
 		html {background-color:#ccc;}
 		body {
-			font-family: Arial, Helvetica, sans-serif;
+			font-family: Georgia, 'Times New Roman', Times, serif;
 			max-width:960px; /* keeps from getting too large on wide screen */
 			width:90%; /* shrink to fit screen */
 			margin:auto; /* center in html element */
@@ -17,16 +17,29 @@
 			min-height:100%; /* keeps from getting too large on wide screen */
 			}
 		img.flexible {
-			float:right;
-			display:inline-block;
+			display:block;
+			margin-left: auto;
+			margin-right: auto;
 			padding:20px;
 			max-width:300px; /* actual size of image */
 			width:33%; /* approximate size taken on screen in maximum view */
 		}
-		p {margin:10px;}
+
+		.mydiv {
+			margin:10px;
+			font-size: 50px;
+			text-align: center;
+			}
+
+		.day {
+			margin:10px;
+			font-size: 30px;
+			text-align: center;
+		}
 		h1,h2,h3,h4,h5,h6{
 			font-weight:normal;
 			margin:10px;
+			text-align: center;
 			}
 		h1.masthead {margin-top:0;}
 		footer {
@@ -35,6 +48,7 @@
 			}
 		nav{
 			text-align:center; /* centers the nav */
+			background-color:grey;
 		}
 		
 		nav ul {
@@ -44,6 +58,7 @@
 			{
 				display:inline-block; /* makes horizontal, but able to declare margins */
 				margin:0 2%; /* margin left-right, gets smaller as necessary */
+				
 			}
 		nav a:hover{
 			text-decoration: none;
@@ -59,26 +74,24 @@
 		<h1 class="masthead">Time of Day</h1>
 		<nav>
 			<ul>
-				<li><a href="#">Link 1</a></li>
-				<li><a href="#">Link 2</a></li>
-				<li><a href="#">Link 3</a></li>
-				<li><a href="#">Link 4</a></li>
-				<li><a href="#">Link 5</a></li>
-				<li><a href="#">Link 6</a></li>
+				<li><a href="https://youtu.be/dQw4w9WgXcQ">City</a></li>
+				<li><a href="https://youtu.be/dQw4w9WgXcQ">State</a></li>
+				<li><a href="https://youtu.be/dQw4w9WgXcQ">Country</a></li>
+				<li><a href="https://youtu.be/dQw4w9WgXcQ">Time Zone</a></li>
+				<li><a href="https://youtu.be/dQw4w9WgXcQ">Continent</a></li>
+				<li><a href="https://youtu.be/dQw4w9WgXcQ">Time</a></li>
 			</ul>
 		</nav>
 	</header>
     <main>
 	 <header><h3>An IT 121 assignment by Anisah Abdullah</h3></header>
-	 <div id="mydiv">Greeting goes here</div>
-	 <p>This HTML5 Flexible template could be a good starting point for some of your projects.  The template file starts by setting a background color on the HTML element, and setting max-width on the body, which is styled like a wrapper.  The BODY element is also set to a percentage width so it leaves a bit of HTML color until it shrinks in size toward the mobile view.</p>
-	 <p>There is an image with a class of FLEXIBLE which is set to a max-width equal to the size of the image.  Simutaneously the class sets the image to a percentage width, allowing the image to flex in size.  The height is not changed, as this would skew the image.</p>
-	 <p>The LIST elements inside the NAV are displayed inline by setting the display to be inline-block.  Bullets are removed by setting the UL to display</p>
-	 <p>The FOOTER includes a clear:both to keep everything above it!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" />
+	 <div id="mydiv" class="mydiv">Greeting goes here</div>
+	 <div id="day" class="day"></div>
+
+	  <img src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" id="image" />
      </main>
     <footer>
-      <small>&copy; 2013, All Rights Reserved ~
+      <small>&copy; 2013-<script>document.write(new Date().getFullYear())</script>, All Rights Reserved ~
       <a href="https://validator.w3.org/check/referer" target="_blank">Valid HTML</a> ~
       <a href="https://jigsaw.w3.org/css-validator/check?uri=referer" target="_blank">Valid CSS</a>
       </small>
@@ -86,20 +99,41 @@
 	<!-- END Footer -->
 	<script>
 		let myDate = new Date(); 
-		let myHours = myDate.getHours();
+		//let myHours = myDate.getHours();
+		let myHours = 18;
 		let myGreeting = '';
 		let myColor = '';
-
-		if(myHours > 12){ 
+		let myPicture = document.getElementById('image');
+		let myDay = myDate.getDay();
+		let today = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][myDay];
+		
+		if (myHours < 5){
+            myGreeting = "Good night. Zzzzz...";
+			myColor = "#020571E0";
+			image.src = "images/night.jpg";
+		}else if (myHours < 12){ 
+			myGreeting = "Good morning, don't forget your coffee!";
+			myColor = "#81D4FA";
+			image.src = "images/morning.png";
+		}else if (myHours < 18){
 			myGreeting = "Good afternoon!";
-			myColor = "blue";
+			myColor = "#FF7043";
+			image.src = "images/afternoon.jpg";
+        }else if (myHours < 23){
+			myGreeting = "Good evening.";
+			myColor = "#F54545";
+			image.src = "images/evening.jpg";
 		}else{ 
-			myGreeting = "Good morning?";
-			myColor = "yellow";
+			myGreeting = "Good night. Zzzzz...";
+			myColor = "#020571E0";
+			image.src = "images/night.png";
 		} 
-
+		
 		document.getElementById('mydiv').innerHTML = myGreeting;
+		document.getElementById("day").innerHTML = "Today is " + today + ".";
 		document.body.style.backgroundColor = myColor;
+
 	</script>
 </body>
 </html>
+ 
