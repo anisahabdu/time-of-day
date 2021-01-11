@@ -99,33 +99,31 @@
 	<!-- END Footer -->
 	<script>
 		let myDate = new Date(); 
-		let myHours = myDate.getHours();
+		//let myHours = myDate.getHours();
+		let myHours = 5;
 		let myGreeting = '';
 		let myColor = '';
 		let myPicture = document.getElementById('image');
 		let myDay = myDate.getDay();
 		let today = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][myDay];
 		
-		if (myHours < 5){
-            myGreeting = "Good night. Zzzzz...";
-			myColor = "#020571E0";
-			image.src = "images/night.jpg";
-		}else if (myHours < 12){ 
+		
+		if(myHours >= 5 && myHours <12){
 			myGreeting = "Good morning, don't forget your coffee!";
 			myColor = "#81D4FA";
 			image.src = "images/morning.png";
-		}else if (myHours < 18){
+		}else if (myHours >=12 && myHours < 18){
 			myGreeting = "Good afternoon!";
 			myColor = "#FF7043";
 			image.src = "images/afternoon.jpg";
-        }else if (myHours < 23){
+        }else if (myHours >= 18 && myHours < 23){
 			myGreeting = "Good evening.";
 			myColor = "#F54545";
 			image.src = "images/evening.jpg";
 		}else{ 
 			myGreeting = "Good night. Zzzzz...";
 			myColor = "#020571E0";
-			image.src = "images/night.png";
+			image.src = "images/night.jpg";
 		} 
 		
 		document.getElementById('mydiv').innerHTML = myGreeting;
